@@ -38,13 +38,13 @@
         }
         else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            NSLog(@"%@", dataDictionary);
+            // NSLog(@"%@", dataDictionary);
             
             // this makes it an instance variable of object, instead of
             // local variable NSArray *movies
             self.movies = dataDictionary[@"results"];
             for (NSDictionary *movie in self.movies) {
-                NSLog(@"%@", movie[@"title"]);
+                // NSLog(@"%@", movie[@"title"]);
             }
             
             [self.tableView reloadData];
@@ -65,10 +65,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // in java: cell = UITableViewCell()
     // have to manually call init
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
+    
     
     NSDictionary *movie = self.movies[indexPath.row];
-    cell.textLabel.text = movie[@"title"];
+    //cell.textLabel.text = movie[@"title"];
     // cell.textLabel.text = [NSString stringWithFormat:@"row: %ld, section: %ld", (long)indexPath.row, indexPath.section];
     
     return cell;
