@@ -47,6 +47,7 @@
                 NSLog(@"%@", movie[@"title"]);
             }
             
+            [self.tableView reloadData];
             // TODO: Get the array of movies
             // TODO: Store the movies in a property to use elsewhere
             // TODO: Reload your table view data
@@ -58,7 +59,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.movies.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -66,7 +67,9 @@
     // have to manually call init
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"row: %ld, section: %ld", (long)indexPath.row, indexPath.section];
+    NSDictionary *movie = self.movies[indexPath.row];
+    cell.textLabel.text = movie[@"title"];
+    // cell.textLabel.text = [NSString stringWithFormat:@"row: %ld, section: %ld", (long)indexPath.row, indexPath.section];
     
     return cell;
 }
