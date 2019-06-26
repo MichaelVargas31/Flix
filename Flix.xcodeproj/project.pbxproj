@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		FF80734522C3EFA90034E444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF80734422C3EFA90034E444 /* AppDelegate.m */; };
-		FF80734822C3EFA90034E444 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF80734722C3EFA90034E444 /* ViewController.m */; };
 		FF80734B22C3EFA90034E444 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF80734922C3EFA90034E444 /* Main.storyboard */; };
 		FF80734D22C3EFA90034E444 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF80734C22C3EFA90034E444 /* Assets.xcassets */; };
 		FF80735022C3EFA90034E444 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF80734E22C3EFA90034E444 /* LaunchScreen.storyboard */; };
 		FF80735322C3EFA90034E444 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF80735222C3EFA90034E444 /* main.m */; };
 		FF80735D22C3EFAA0034E444 /* FlixTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF80735C22C3EFAA0034E444 /* FlixTests.m */; };
 		FF80736822C3EFAA0034E444 /* FlixUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF80736722C3EFAA0034E444 /* FlixUITests.m */; };
+		FF80737722C3FBBB0034E444 /* MoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF80737622C3FBBB0034E444 /* MoviesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +38,6 @@
 		FF80734022C3EFA90034E444 /* Flix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF80734322C3EFA90034E444 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FF80734422C3EFA90034E444 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FF80734622C3EFA90034E444 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FF80734722C3EFA90034E444 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		FF80734A22C3EFA90034E444 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FF80734C22C3EFA90034E444 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF80734F22C3EFA90034E444 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +49,8 @@
 		FF80736322C3EFAA0034E444 /* FlixUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlixUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF80736722C3EFAA0034E444 /* FlixUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlixUITests.m; sourceTree = "<group>"; };
 		FF80736922C3EFAA0034E444 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF80737522C3FBBB0034E444 /* MoviesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoviesViewController.h; sourceTree = "<group>"; };
+		FF80737622C3FBBB0034E444 /* MoviesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoviesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +101,9 @@
 		FF80734222C3EFA90034E444 /* Flix */ = {
 			isa = PBXGroup;
 			children = (
+				FF80737822C3FC9A0034E444 /* View Controllers */,
 				FF80734322C3EFA90034E444 /* AppDelegate.h */,
 				FF80734422C3EFA90034E444 /* AppDelegate.m */,
-				FF80734622C3EFA90034E444 /* ViewController.h */,
-				FF80734722C3EFA90034E444 /* ViewController.m */,
 				FF80734922C3EFA90034E444 /* Main.storyboard */,
 				FF80734C22C3EFA90034E444 /* Assets.xcassets */,
 				FF80734E22C3EFA90034E444 /* LaunchScreen.storyboard */,
@@ -130,6 +129,15 @@
 				FF80736922C3EFAA0034E444 /* Info.plist */,
 			);
 			path = FlixUITests;
+			sourceTree = "<group>";
+		};
+		FF80737822C3FC9A0034E444 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FF80737522C3FBBB0034E444 /* MoviesViewController.h */,
+				FF80737622C3FBBB0034E444 /* MoviesViewController.m */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +270,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF80734822C3EFA90034E444 /* ViewController.m in Sources */,
 				FF80735322C3EFA90034E444 /* main.m in Sources */,
 				FF80734522C3EFA90034E444 /* AppDelegate.m in Sources */,
+				FF80737722C3FBBB0034E444 /* MoviesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
