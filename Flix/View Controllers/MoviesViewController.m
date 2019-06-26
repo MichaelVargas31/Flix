@@ -8,6 +8,7 @@
 
 #import "MoviesViewController.h"
 #import "MovieCell.h"
+#import "UIImageView+AFNetworking.h"    // adds helper functions to UIImageView
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -44,9 +45,9 @@
             // this makes it an instance variable of object, instead of
             // local variable NSArray *movies
             self.movies = dataDictionary[@"results"];
-            for (NSDictionary *movie in self.movies) {
-                // NSLog(@"%@", movie[@"title"]);
-            }
+//            for (NSDictionary *movie in self.movies) {
+//                // NSLog(@"%@", movie[@"title"]);
+//            }
             
             [self.tableView reloadData];
             // TODO: Get the array of movies
@@ -76,6 +77,15 @@
     cell.synopsisLabel.text = movie[@"overview"];
     //cell.textLabel.text = movie[@"title"];
     // cell.textLabel.text = [NSString stringWithFormat:@"row: %ld, section: %ld", (long)indexPath.row, indexPath.section];
+    
+    // now to get images:
+    NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
+    NSString *posterURLString = movie[@"poster_path"];
+    NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
+    
+    NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
+    [cell.posterView setImageWithURL:posterURL];
+    
     
     return cell;
 }
