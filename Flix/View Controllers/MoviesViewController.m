@@ -7,6 +7,7 @@
 //
 
 #import "MoviesViewController.h"
+#import "MovieCell.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -65,11 +66,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // in java: cell = UITableViewCell()
     // have to manually call init
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
-    
+    // unless you do the bottom:
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
+    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
+    // If you get an error, its because you haven't imported MovieCell.h
     
     NSDictionary *movie = self.movies[indexPath.row];
+    cell.titleLabel.text = movie[@"title"];
+    cell.synopsisLabel.text = movie[@"overview"];
     //cell.textLabel.text = movie[@"title"];
     // cell.textLabel.text = [NSString stringWithFormat:@"row: %ld, section: %ld", (long)indexPath.row, indexPath.section];
     
