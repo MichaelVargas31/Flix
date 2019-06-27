@@ -9,6 +9,7 @@
 #import "MoviesViewController.h"
 #import "MovieCell.h"
 #import "UIImageView+AFNetworking.h"    // adds helper functions to UIImageView
+#import "DetailsViewController.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -117,6 +118,19 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     NSLog(@"Tap tap tap");
+    
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    NSDictionary *movie = self.movies[indexPath.row];
+    
+    // [segue ...] returns a view controller, left side of equation
+    // casts it to a DetailsViewController
+    DetailsViewController *detailsViewController = [segue destinationViewController];
+    
+    detailsViewController.movie = movie;
+
+    
+    
 }
 
 
