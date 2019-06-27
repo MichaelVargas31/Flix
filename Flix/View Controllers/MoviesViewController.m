@@ -14,6 +14,7 @@
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 /* creates private instance variable, automatically creates getter
  and setter methods
@@ -29,6 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self.activityIndicator startAnimating];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -53,6 +56,27 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
+            NSLog(@"You need internet connection my dude");
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Encountered an unexpected error. Check network connection and retry." preferredStyle:(UIAlertControllerStyleAlert)];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                // handle cancel response here. Doing nothing will dismiss the view.
+            }];
+            UIAlertAction *refreshAction = [UIAlertAction actionWithTitle:@"Refresh" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                // handle response here.
+                NSLog(@"Refresh here");
+                [self fetchMovies];
+            }];
+            
+            [alert addAction:cancelAction];
+            [alert addAction:refreshAction];
+            
+            [self presentViewController:alert animated:YES completion:^{
+                // optional code for what happens after the alert controller has finished presenting
+            }];
+            
+            
         }
         else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -69,6 +93,7 @@
             // TODO: Get the array of movies
             // TODO: Store the movies in a property to use elsewhere
             // TODO: Reload your table view data
+            [self.activityIndicator stopAnimating];
         }
         [self.refreshControl endRefreshing];
     }];
