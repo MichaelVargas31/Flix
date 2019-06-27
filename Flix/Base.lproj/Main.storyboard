@@ -77,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="556" y="568"/>
         </scene>
-        <!--View Controller-->
+        <!--Movies Grid View Controller-->
         <scene sceneID="gxG-85-txv">
             <objects>
-                <viewController id="6h6-EU-APq" sceneMemberID="viewController">
+                <viewController id="6h6-EU-APq" customClass="MoviesGridViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yr1-TD-zxe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,13 +96,22 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PY2-kg-fk5">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCollectionCell" id="PY2-kg-fk5" customClass="MovieCollectionCell">
                                         <rect key="frame" x="0.0" y="0.0" width="106" height="155"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="106" height="155"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Qd-co-p8r">
+                                                    <rect key="frame" x="0.0" y="0.0" width="106" height="155"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
                                         </view>
+                                        <connections>
+                                            <outlet property="posterView" destination="3Qd-co-p8r" id="Yp4-Nb-npV"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -111,6 +120,9 @@
                         <viewLayoutGuide key="safeArea" id="ZZm-jR-tQG"/>
                     </view>
                     <navigationItem key="navigationItem" id="GiY-FH-Vjs"/>
+                    <connections>
+                        <outlet property="collectionView" destination="DVb-vz-qVW" id="p4O-X8-B4X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssc-Th-TFG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -185,8 +197,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="ddn-7S-QBR" kind="relationship" relationship="viewControllers" id="ilu-Z3-IRL"/>
                         <segue destination="xns-gd-r2z" kind="relationship" relationship="viewControllers" id="NOK-8D-Xee"/>
+                        <segue destination="ddn-7S-QBR" kind="relationship" relationship="viewControllers" id="oZF-FQ-tXx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4zG-If-KVL" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -21,6 +21,7 @@
 		FF80737C22C41E310034E444 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF80737B22C41E310034E444 /* MovieCell.m */; };
 		FF80737F22C42EAA0034E444 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF80737E22C42EAA0034E444 /* DetailsViewController.m */; };
 		FF80738222C4443B0034E444 /* MoviesGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF80738122C4443B0034E444 /* MoviesGridViewController.m */; };
+		FF80738522C4480C0034E444 /* MovieCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF80738422C4480C0034E444 /* MovieCollectionCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		FF80737E22C42EAA0034E444 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		FF80738022C4443B0034E444 /* MoviesGridViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoviesGridViewController.h; sourceTree = "<group>"; };
 		FF80738122C4443B0034E444 /* MoviesGridViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoviesGridViewController.m; sourceTree = "<group>"; };
+		FF80738322C4480C0034E444 /* MovieCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCollectionCell.h; sourceTree = "<group>"; };
+		FF80738422C4480C0034E444 /* MovieCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCollectionCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +202,8 @@
 			children = (
 				FF80737A22C41E310034E444 /* MovieCell.h */,
 				FF80737B22C41E310034E444 /* MovieCell.m */,
+				FF80738322C4480C0034E444 /* MovieCollectionCell.h */,
+				FF80738422C4480C0034E444 /* MovieCollectionCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -426,6 +431,7 @@
 				FF80735322C3EFA90034E444 /* main.m in Sources */,
 				FF80737F22C42EAA0034E444 /* DetailsViewController.m in Sources */,
 				FF80734522C3EFA90034E444 /* AppDelegate.m in Sources */,
+				FF80738522C4480C0034E444 /* MovieCollectionCell.m in Sources */,
 				FF80737C22C41E310034E444 /* MovieCell.m in Sources */,
 				FF80737722C3FBBB0034E444 /* MoviesViewController.m in Sources */,
 				FF80738222C4443B0034E444 /* MoviesGridViewController.m in Sources */,
