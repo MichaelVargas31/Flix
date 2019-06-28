@@ -30,13 +30,13 @@
     
     [self fetchMovieInformation];
     
-    NSString *baseURLString = @"https://www.youtube.com/watch?v=\";
-    NSString *videoKeyURLString = self.movie[@"poster_path"];
-    NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
-    NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
-    
+    NSString *baseURLString = @"https://www.youtube.com/watch?v=\\";
+//    NSString *videoKeyURLString = self.movie[@"poster_path"];
+//    NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
+//    NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
     
 }
+
 - (IBAction)doneButtonTapped:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -45,15 +45,16 @@
 - (void) fetchMovieInformation{
     // build the URL
     NSString *baseURLString = @"https://api.themoviedb.org/3/movie/";
-    // already have movieID
-    NSString *firstHalf = [baseURLString stringByAppendingString:movieID];
+    // already have movieID, make it a string
+    NSString *movieIDString = [NSString stringWithFormat:@"%@", movieID];
+
+    NSString *firstHalf = [baseURLString stringByAppendingString:movieIDString];
     NSString *restURLString = @"/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US";
     NSString *fullTrailerURLString = [firstHalf stringByAppendingString:restURLString];
-    
     NSLog(@"url = %@", fullTrailerURLString);
     NSURL *trailerURL = [NSURL  URLWithString:fullTrailerURLString];
     
-    // NSURL *url = [NSURL URLWithString:@"https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV"];
+    // NSURL *url = [NSURL URLWithString:@" https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV"];
     NSURLRequest *request = [NSURLRequest requestWithURL:trailerURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -61,10 +62,19 @@
             NSLog(@"%@", [error localizedDescription]);
         }
         else {
-            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            
+            NSDictionary *movieInfoDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             // TODO: Get the posts and store in posts property
+            NSLog(@"movie info = %@", movieInfoDictionary);
             // TODO: Reload the table view
+            NSArray *movieResults = movieInfoDictionary[@"results"];
+            NSLog(@"results = %@", movieResults);
+            NSDictionary *firstMovieResults = movieResults[0];
+            NSString *key = firstMovieResults[@"key"];
+            NSLog(@"%@", key);
+            
+            NSString *baseURLString = @"https://www.youtube.com/watch?v=\\";
+            NSString *fullTrailerString = [baseURLString stringByAppendingString:key];
+            NSURL *trailerURL = [NSURL URLWithString:fullTrailerString];
         }
     }];
     [task resume];
