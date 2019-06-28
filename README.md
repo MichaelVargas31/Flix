@@ -54,7 +54,7 @@ Had hard time figuring out how to pass data between view controllers, and then h
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
-- [WebKit]
+- [WebKit](https://guides.codepath.org/ios/Using-WebKit-View) - opens web browser type window
 
 ## License
 
