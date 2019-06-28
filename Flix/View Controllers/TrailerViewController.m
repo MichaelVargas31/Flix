@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"Your movie ID is %@", movieID);
+    // NSLog(@"Your movie ID is %@", movieID);
     
     [self fetchMovieInformation];
     
@@ -59,7 +59,7 @@
     NSString *firstHalf = [baseURLString stringByAppendingString:movieIDString];
     NSString *restURLString = @"/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US";
     NSString *fullURLString = [firstHalf stringByAppendingString:restURLString];
-    NSLog(@"url = %@", fullURLString);
+    // NSLog(@"url = %@", fullURLString);
     NSURL *trailerURL = [NSURL  URLWithString:fullURLString];
     
     // NSURL *url = [NSURL URLWithString:@" https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV"];
@@ -72,21 +72,21 @@
         else {
             NSDictionary *movieInfoDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             // TODO: Get the posts and store in posts property
-            NSLog(@"movie info = %@", movieInfoDictionary);
+            // NSLog(@"movie info = %@", movieInfoDictionary);
             // TODO: Reload the table view
             NSArray *movieResults = movieInfoDictionary[@"results"];
-            NSLog(@"results = %@", movieResults);
+            //NSLog(@"results = %@", movieResults);
             NSDictionary *firstMovieResults = movieResults[0];
             NSString *key = firstMovieResults[@"key"];
-            NSLog(@"%@", key);
+            //NSLog(@"%@", key);
             
             NSString *baseURLString = @"https://www.youtube.com/watch?v=";
             NSString *fullTrailerString = [baseURLString stringByAppendingString:key];
-            NSLog(@"Should work - %@", fullTrailerString);
+            //NSLog(@"Should work - %@", fullTrailerString);
 
             NSURL *trailerURL = [NSURL URLWithString:fullTrailerString];
             // NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
-            NSLog(@"Should be the same - %@", self.trailerURL);
+            //NSLog(@"Should be the same - %@", self.trailerURL);
 
 
             
