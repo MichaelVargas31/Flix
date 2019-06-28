@@ -185,9 +185,6 @@
     DetailsViewController *detailsViewController = [segue destinationViewController];
     
     detailsViewController.movie = movie;
-
-    
-    
 }
 
 

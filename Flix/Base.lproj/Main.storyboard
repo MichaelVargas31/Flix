@@ -189,7 +189,8 @@
                                             <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="o5p-wh-bY2" kind="presentation" id="gj7-ti-TJW"/>
+                                            <action selector="posterTapped:" destination="eXM-Hp-HFr" eventType="touchUpInside" id="zoB-ti-0DQ"/>
+                                            <segue destination="o5p-wh-bY2" kind="presentation" identifier="trailerSegue" id="gj7-ti-TJW"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -201,6 +202,7 @@
                     <connections>
                         <outlet property="backdropView" destination="ucy-X3-QUa" id="c2I-MS-hea"/>
                         <outlet property="dateLabel" destination="mgG-rW-Lob" id="WZ1-nG-DYu"/>
+                        <outlet property="posterButton" destination="083-KK-N3O" id="aef-0A-b22"/>
                         <outlet property="posterView" destination="ZYY-4J-D8W" id="q2r-5F-zwT"/>
                         <outlet property="synopsisLabel" destination="1sr-aj-RW4" id="hhC-SH-ec2"/>
                         <outlet property="titleLabel" destination="UHU-ND-JSv" id="UoC-ph-jU9"/>
@@ -218,17 +220,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Cl-oF-HXJ">
-                                <rect key="frame" x="166" y="267" width="42" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QYM-VN-MqO">
+                                <rect key="frame" x="322" y="20" width="37" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="o5p-wh-bY2" eventType="touchUpInside" id="oSl-Pi-90N"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="UEj-2V-ng4"/>
                     </view>
+                    <connections>
+                        <outlet property="doneButton" destination="QYM-VN-MqO" id="Fd9-vJ-Ygm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aFe-8Z-viw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
