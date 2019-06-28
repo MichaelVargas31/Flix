@@ -7,11 +7,14 @@
 //
 
 #import "TrailerViewController.h"
+#import <WebKit/Webkit.h>
 
 @interface TrailerViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, strong) NSDictionary *videoInfoDictionary;
+@property (weak, nonatomic) IBOutlet WKWebView *trailerWebView;
+@property (weak, nonatomic) NSURL *trailerURL;
 
 
 
@@ -34,7 +37,12 @@
 //    NSString *videoKeyURLString = self.movie[@"poster_path"];
 //    NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
 //    NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
-    
+//
+//    NSURLRequest *request = [NSURLRequest requestWithURL:self.trailerURL
+//                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+//                                         timeoutInterval:10.0];
+//    [self.trailerWebView loadRequest:request];
+
 }
 
 - (IBAction)doneButtonTapped:(id)sender {
@@ -50,9 +58,9 @@
 
     NSString *firstHalf = [baseURLString stringByAppendingString:movieIDString];
     NSString *restURLString = @"/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US";
-    NSString *fullTrailerURLString = [firstHalf stringByAppendingString:restURLString];
-    NSLog(@"url = %@", fullTrailerURLString);
-    NSURL *trailerURL = [NSURL  URLWithString:fullTrailerURLString];
+    NSString *fullURLString = [firstHalf stringByAppendingString:restURLString];
+    NSLog(@"url = %@", fullURLString);
+    NSURL *trailerURL = [NSURL  URLWithString:fullURLString];
     
     // NSURL *url = [NSURL URLWithString:@" https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV"];
     NSURLRequest *request = [NSURLRequest requestWithURL:trailerURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
@@ -72,9 +80,22 @@
             NSString *key = firstMovieResults[@"key"];
             NSLog(@"%@", key);
             
-            NSString *baseURLString = @"https://www.youtube.com/watch?v=\\";
+            NSString *baseURLString = @"https://www.youtube.com/watch?v=";
             NSString *fullTrailerString = [baseURLString stringByAppendingString:key];
+            NSLog(@"Should work - %@", fullTrailerString);
+
             NSURL *trailerURL = [NSURL URLWithString:fullTrailerString];
+            // NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
+            NSLog(@"Should be the same - %@", self.trailerURL);
+
+
+            
+            NSURLRequest *request = [NSURLRequest requestWithURL:trailerURL
+                                                     cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                                 timeoutInterval:10.0];
+            [self.trailerWebView loadRequest:request];
+            
+
         }
     }];
     [task resume];
