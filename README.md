@@ -26,9 +26,9 @@ The following **optional** features are implemented:
 - [ ] Customize the UI.
 
 The following **additional** features are implemented:
-
+- User can click on the poster and load the trailer
 - [ ] List anything else that you can get done to improve the app functionality!
-- User can click on the poster view to load the trailer
+- User can view reviews from IMDB or rotten tomatoes about the movie
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -39,19 +39,21 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/8oOqE5z.gifv' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+Had hard time figuring out how to pass data between view controllers, and then how to make information available across viewControllers
 
 ## Credits
 
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
+- [WebKit]
 
 ## License
 
