@@ -11,14 +11,17 @@
 #import "UIImageView+AFNetworking.h"    // adds helper functions to UIImageView
 #import "DetailsViewController.h"
 
-@interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
+// data is actually movies
+// @property (nonatomic, strong) NSArray *data;
+@property (strong, nonatomic) NSArray *filteredMovies;
+@property (weak, nonatomic) IBOutlet UISearchBar *movieSearchBar;
 /* creates private instance variable, automatically creates getter
  and setter methods
- nonatomic = uninteresting right now
  strong = increment reference count of movies, retain count */
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -35,8 +38,11 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.movieSearchBar.delegate = self;
     
     [self fetchMovies];
+    
+    self.filteredMovies = self.movies;
     
     // setup UIRefreshControl, allocating and initializing object
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -46,6 +52,32 @@
     // [self.tableView addSubview:self.refreshControl];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
+}
+
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length != 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *evaluatedObject, NSDictionary *bindings) {
+            
+//            NSDictionary *movie = self.movies[indexPath.row];
+//            cell.titleLabel.text = movie[@"title"];
+            // NSLog(@"%@", evaluatedObject);
+            //NSDictionary *filteredMovies = self.movies[???];
+            //NSString *movieTitle = filteredMovies[@"title"];
+            NSLog(@"%@", evaluatedObject[@"title"]);
+            return [evaluatedObject[@"title"] containsString:searchText];
+            // cant do containsString with an object, so you have to get the title from the object
+        }];
+        self.filteredMovies = [self.movies filteredArrayUsingPredicate:predicate];
+        
+        NSLog(@"---------\n%@", self.filteredMovies);
+
+    }
+    else {
+        self.filteredMovies = self.movies;
+    }
+    
+    [self.tableView reloadData];
 }
 
 
@@ -60,16 +92,16 @@
             
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Encountered an unexpected error. Check network connection and retry." preferredStyle:(UIAlertControllerStyleAlert)];
             
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                // handle cancel response here. Doing nothing will dismiss the view.
-            }];
+//            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//                // handle cancel response here. Doing nothing will dismiss the view.
+//            }];
             UIAlertAction *refreshAction = [UIAlertAction actionWithTitle:@"Refresh" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 // handle response here.
                 NSLog(@"Refresh here");
                 [self fetchMovies];
             }];
             
-            [alert addAction:cancelAction];
+            // [alert addAction:cancelAction];
             [alert addAction:refreshAction];
             
             [self presentViewController:alert animated:YES completion:^{
@@ -88,7 +120,7 @@
             //            for (NSDictionary *movie in self.movies) {
             //                // NSLog(@"%@", movie[@"title"]);
             //            }
-            
+            self.filteredMovies = self.movies;
             [self.tableView reloadData];
             // TODO: Get the array of movies
             // TODO: Store the movies in a property to use elsewhere
@@ -102,7 +134,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.movies.count;
+    return self.filteredMovies.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -113,7 +145,7 @@
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     // If you get an error, its because you haven't imported MovieCell.h
     
-    NSDictionary *movie = self.movies[indexPath.row];
+    NSDictionary *movie = self.filteredMovies[indexPath.row];
     cell.titleLabel.text = movie[@"title"];
     cell.synopsisLabel.text = movie[@"overview"];
     //cell.textLabel.text = movie[@"title"];
