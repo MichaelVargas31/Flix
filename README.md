@@ -2,10 +2,7 @@
 
 **Flix** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **7** hours spent in total
-
-Wed 11:00-6:00 minus lunch
-Thu 12:00-
+Time spent: **17** hours spent in total
 
 ## User Stories
 
@@ -31,12 +28,12 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [ ] List anything else that you can get done to improve the app functionality!
-- add reviews from other viewers
+- User can click on the poster view to load the trailer
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
 1. When and why you need to create properties for view controllers.
-2. 
+2. How and when to use delegates and datasources
 
 ## Video Walkthrough
 
